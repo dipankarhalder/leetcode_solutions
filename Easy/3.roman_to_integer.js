@@ -36,7 +36,37 @@
  * @param {string} s
  * @return {number}
  */
-var romanToInt = function (s) {
+
+// Solutions 1
+function romanToInt(s) {
+  const romanValues = {
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000,
+  };
+
+  let result = 0;
+  let prevValue = 0;
+
+  for (let i = s.length - 1; i >= 0; i--) {
+    const char = s[i];
+    const value = romanValues[char];
+    if (value < prevValue) {
+      result -= value;
+    } else {
+      result += value;
+    }
+    prevValue = value;
+  }
+  return result;
+}
+
+// Solutions 2
+function romanToInt(s) {
   const romanMap = {
     I: 1,
     V: 5,
@@ -59,4 +89,4 @@ var romanToInt = function (s) {
     }
   }
   return result;
-};
+}
